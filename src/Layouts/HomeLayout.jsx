@@ -65,6 +65,7 @@ function HomeLayout({ children }) {
             {children}
             <Footer />
         </>
+        
     );
 }
 
