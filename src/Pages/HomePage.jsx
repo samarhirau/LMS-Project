@@ -9,9 +9,9 @@ function HomePage() {
         <div className="w-1/2 space-y-6">
           <h1 className="text-5xl font-semibold">
             Find the best courses for your career
-            <span className="text-yellow-500 font-bold">
-              Online courses available
-            </span>
+             <span className="text-yellow-500 font-bold">
+               Online courses available
+             </span>
           </h1>
           <p className="text-xl text-gray-200">
             Learn from the best instructors around the world. Get the best
