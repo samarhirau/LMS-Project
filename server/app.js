@@ -1,7 +1,10 @@
-const express = require('express');
-const cors = require('cors');
-const cokkieParser = require('cookie-parser');
-const {config} = require('dotenv');
+import express from 'express';
+import cors from 'cors';
+import cokkieParser from 'cookie-parser';
+import {config} from 'dotenv';
+import morgan from 'morgan';
+import userRoutes from './routes/user.routes.js';
+import errorMiddleware from './middlewares/error.middleware.js';
 config();
 
 
@@ -15,7 +18,7 @@ app.use(express.json());
 
 app.use(cors(
     {
-        origin: [process.env.CORS_ORIGIN],
+        origin: [process.env.FRONTEND_URL],
         credentials: true
     }   
 ));
@@ -23,17 +26,21 @@ app.use(cors(
 
 app.use(cokkieParser());
 
+app.use(morgan('dev'));
+
 app.use('/ping', (req, res) => {
     res.send('pong');
 });
 
-// rouotes od 3 modules
+app.use('/api/v1/user',userRoutes);
 
 app.all('*' , (req, res) => {
     res.status(404).send('OOPS! 404 Not Found');
     });
 
-module.exports = app;
+app.use(errorMiddleware);    
+
+export default app;
 
 
 
