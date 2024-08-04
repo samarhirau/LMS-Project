@@ -4,7 +4,9 @@ import cokkieParser from 'cookie-parser';
 import {config} from 'dotenv';
 import morgan from 'morgan';
 import userRoutes from './routes/user.routes.js';
+import courseRoutes from './models/course.model.js';
 import errorMiddleware from './middlewares/error.middleware.js';
+import morgan from 'morgan';
 config();
 
 
@@ -32,6 +34,7 @@ app.use('/ping', (req, res) => {
 });
 
 app.use('/api/v1/user',userRoutes);
+app.use('/api/v1/courses', courseRoutes);
 
 app.all('*' , (req, res) => {
     res.status(404).send('OOPS! 404 Not Found');
