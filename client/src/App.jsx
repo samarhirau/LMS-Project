@@ -6,6 +6,12 @@ import NotFound from "./Pages/NotFound";
 import Signup from "./Pages/Signup";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from "./Pages/Login";
+import CourseList from "./Pages/CourseList";
+import Contact from "./Pages/Contact";
+import Denied from "./Pages/Denied";
+import NotRequireAuth from "./Components/Auth/NotRequireAuth";
+
 
 function App() {
   return (
@@ -13,9 +19,15 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/courses" element={<CourseList />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/denied" element={<Denied />} />
 
-        <Route path="/signup" element={<Signup />} />
+        <Route element={<NotRequireAuth />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Route>
 
         <Route path="*" element={<NotFound />} />
         
